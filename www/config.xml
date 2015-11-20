@@ -3,7 +3,7 @@
 <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         xmlns:android   = "http://schemas.android.com/apk/res/android"
-        id          = "com.gamingplatform.tictactoe"
+        id          = "com.gamingplatform.banqi"
         versionCode = "12"
         version     = "5.0.0" >
     <!-- versionCode is optional and Android only:
@@ -14,10 +14,10 @@
     <string>400</string>
     </gap:config-file>
 
-    <name>Tic Tac Toe</name>
+    <name>Banqi</name>
 
     <description>
-        A multiplayer Tic Tac Toe game.
+        A 2-player board game.
     </description>
 
     <author href="http://yoav-zibin.github.io/homepage/" email="yoav.zibin@gmail.com">
@@ -92,8 +92,8 @@
 
     <!-- see: https://build.phonegap.com/plugins/1246 -->
     <gap:plugin name="com.phonegap.plugins.facebookconnect" source="pgb" version="0.9.0">
-        <param name="APP_ID" value="1505618116376825" />
-        <param name="APP_NAME" value="Tic Tac Toe" />
+        <param name="APP_ID" value="1522728211376159" />
+        <param name="APP_NAME" value="BanQi" />
     </gap:plugin>
 
     <!--
@@ -141,7 +141,7 @@
     <gap:config-file platform="android" parent="/manifest/application" mode="add" >
       <activity
           android:configChanges="locale|keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-          android:name=".TicTacToe" android:label="@string/app_name" android:screenOrientation="unspecified" android:windowSoftInputMode="adjustUnspecified|stateUnspecified">
+          android:name=".BanQi" android:label="@string/app_name" android:screenOrientation="unspecified" android:windowSoftInputMode="adjustUnspecified|stateUnspecified">
         <intent-filter>
           <action android:name="android.intent.action.MAIN"/>
           <category android:name="android.intent.category.LAUNCHER"/>
@@ -150,11 +150,11 @@
           <action android:name="android.intent.action.VIEW"/>
           <category android:name="android.intent.category.DEFAULT"/>
           <category android:name="android.intent.category.BROWSABLE"/>
-          <data android:scheme="tictactoe"/>
+          <data android:scheme="banqi"/>
         </intent-filter>
       </activity>
     </gap:config-file>
     <gap:url-scheme>
-      <scheme>tictactoe</scheme>
+      <scheme>banqi</scheme>
     </gap:url-scheme>
 </widget>
