@@ -4,24 +4,19 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         xmlns:android   = "http://schemas.android.com/apk/res/android"
         id          = "com.gamingplatform.banqi"
-        versionCode = "12"
-        version     = "5.0.0" >
+        versionCode = "3"
+        version     = "3.0.0" >
     <!-- versionCode is optional and Android only:
       needs to be increased every time you submit a new APK version.
       see: http://developer.android.com/tools/publishing/versioning.html
     -->
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-    <string>400</string>
+      <string>300</string>
     </gap:config-file>
 
     <name>Banqi</name>
-
-    <description>
-        A 2-player board game.
-    </description>
-
-    <author href="http://yoav-zibin.github.io/homepage/" email="yoav.zibin@gmail.com">
-        Yoav Zibin
+    <author email="yanhongoy@gmail.com">
+        yanhongoy@gmail.com
     </author>
 
     <!--
@@ -35,7 +30,7 @@
     <!-- Customize your app and platform with the preference element. -->
     <preference name="phonegap-version"           value="cli-5.2.0" />
     <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
-    <preference name="fullscreen"                 value="true" />           <!-- all: hides the status bar at the top of the screen -->
+    <preference name="fullscreen"                 value="false" />          <!-- all: hides the status bar at the top of the screen -->
     <preference name="target-device"              value="universal" />      <!-- ios: possible values handset, tablet, or universal -->
     <preference name="prerendered-icon"           value="false" />          <!-- ios: if icon is prerendered, iOS will not apply it's gloss to the app's icon on the user's home screen -->
     <preference name="detect-data-types"          value="false" />          <!-- ios: controls whether data types (such as phone no. and dates) are automatically turned into links by the system -->
@@ -47,45 +42,59 @@
     <preference name="show-splash-screen-spinner" value="true" />           <!-- ios: if set to false, the spinner won't appear on the splash screen during app loading -->
     <preference name="auto-hide-splash-screen"    value="true" />           <!-- ios: if set to false, the splash screen must be hidden using a JavaScript API -->
     <preference name="android-minSdkVersion"      value="7" />              <!-- android: MIN SDK version supported on the target device. MAX version is blank by default. -->
+    <preference name="android-targetSdkVersion"   value="14" />             <!-- To hide the "..." (overflow menu) on Android, see http://stackoverflow.com/questions/20375626/disabling-android-menu-button-in-phonegap-build -->
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
 
-    <gap:plugin name="org.apache.cordova.splashscreen" />
-    <gap:splash src="splash.png" width="512" height="512"/>
-    <!-- iPhone and iPod touch -->
-    <gap:splash src="splash-320x480.png" gap:platform="ios" width="320" height="480" />
-    <gap:splash src="splash-640x960.png" gap:platform="ios" width="640" height="960" />
-    <!-- iPhone 5 / iPod Touch (5th Generation) -->
-    <gap:splash src="splash-640x1136.png" gap:platform="ios" width="640" height="1136" />
-    <!-- iPad -->
-    <gap:splash src="splash-768x1024.png" gap:platform="ios" width="768" height="1024" />
-    <gap:splash src="splash-1024x768.png" gap:platform="ios" width="1024" height="768" />
-    <!-- iPhone 6 -->
-    <gap:splash src="splash-750x1334.png" gap:platform="ios" width="750" height="1334" />
-    <gap:splash src="splash-1242x2208.png" gap:platform="ios" width="1242" height="2208" />
-    <gap:splash src="splash-2208x1242.png" gap:platform="ios" width="2208" height="1242" />
-    <!-- Retina iPad -->
-    <gap:splash src="splash-1536x2048.png" gap:platform="ios" width="1536" height="2048" />
-    <gap:splash src="splash-2048x1536.png" gap:platform="ios" width="2048" height="1536" />
+    <!-- Hiding status bar on ios, see http://stackoverflow.com/questions/20734117/how-to-remove-ios-status-bar-with-phonegap-build -->
+    <gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance" overwrite="true">
+        <false/>
+    </gap:config-file>
+    <gap:config-file platform="ios" parent="UIStatusBarHidden" overwrite="true">
+        <true/>
+    </gap:config-file>
 
-    <icon src="icon-512.png" width="512" height="512"/>
-    <icon src="icon-57.png" gap:platform="ios" width="57" height="57" />
-    <icon src="icon-72.png" gap:platform="ios" width="72" height="72" />
-    <icon src="icon-114.png" gap:platform="ios" width="114" height="114" />
-    <icon src="icon-144.png" gap:platform="ios" width="144" height="144" />
-    <!-- iPhone 6 / 6+ -->
-    <icon src="icon-180.png" gap:platform="ios" width="180" height="180" />
-    <!-- iPhone / iPod Touch  -->
-    <icon src="icon-60.png" gap:platform="ios" width="60" height="60" />
-    <icon src="icon-120.png" gap:platform="ios" width="120" height="120" />
+    <gap:plugin name="org.apache.cordova.splashscreen" />
+    <!-- I only want splash screen for iOS because it's mandatory. I don't think it's needed.
+      Moreover, on Android, the splash screen gets stretched which is ugly,
+      unless you use the more complex 9-patch png format.
+      If you really want to use one for Android, use a simple white splash:
+      <splash src="pgbomit/splash-white-1x1.png" />
+    -->
+    <!-- iPhone and iPod touch -->
+    <gap:splash src="pgbomit/splash-320x480.png" gap:platform="ios" width="320" height="480" />
+    <gap:splash src="pgbomit/splash-640x960.png" gap:platform="ios" width="640" height="960" />
+    <!-- iPhone 5 / iPod Touch (5th Generation) -->
+    <gap:splash src="pgbomit/splash-640x1136.png" gap:platform="ios" width="640" height="1136" />
     <!-- iPad -->
-    <icon src="icon-76.png" gap:platform="ios" width="76" height="76" />
-    <icon src="icon-152.png" gap:platform="ios" width="152" height="152" />
+    <gap:splash src="pgbomit/splash-768x1024.png" gap:platform="ios" width="768" height="1024" />
+    <gap:splash src="pgbomit/splash-1024x768.png" gap:platform="ios" width="1024" height="768" />
+    <!-- iPhone 6 -->
+    <gap:splash src="pgbomit/splash-750x1334.png" gap:platform="ios" width="750" height="1334" />
+    <gap:splash src="pgbomit/splash-1242x2208.png" gap:platform="ios" width="1242" height="2208" />
+    <gap:splash src="pgbomit/splash-2208x1242.png" gap:platform="ios" width="2208" height="1242" />
+    <!-- Retina iPad -->
+    <gap:splash src="pgbomit/splash-1536x2048.png" gap:platform="ios" width="1536" height="2048" />
+    <gap:splash src="pgbomit/splash-2048x1536.png" gap:platform="ios" width="2048" height="1536" />
+
+    <icon src="pgbomit/icon-512.png" width="512" height="512"/>
+    <icon src="pgbomit/icon-57.png" gap:platform="ios" width="57" height="57" />
+    <icon src="pgbomit/icon-72.png" gap:platform="ios" width="72" height="72" />
+    <icon src="pgbomit/icon-114.png" gap:platform="ios" width="114" height="114" />
+    <icon src="pgbomit/icon-144.png" gap:platform="ios" width="144" height="144" />
+    <!-- iPhone 6 / 6+ -->
+    <icon src="pgbomit/icon-180.png" gap:platform="ios" width="180" height="180" />
+    <!-- iPhone / iPod Touch  -->
+    <icon src="pgbomit/icon-60.png" gap:platform="ios" width="60" height="60" />
+    <icon src="pgbomit/icon-120.png" gap:platform="ios" width="120" height="120" />
+    <!-- iPad -->
+    <icon src="pgbomit/icon-76.png" gap:platform="ios" width="76" height="76" />
+    <icon src="pgbomit/icon-152.png" gap:platform="ios" width="152" height="152" />
     <!-- Settings Icon -->
-    <icon src="icon-29.png" gap:platform="ios" width="29" height="29" />
-    <icon src="icon-58.png" gap:platform="ios" width="58" height="58" />
+    <icon src="pgbomit/icon-29.png" gap:platform="ios" width="29" height="29" />
+    <icon src="pgbomit/icon-58.png" gap:platform="ios" width="58" height="58" />
     <!-- Spotlight Icon -->
-    <icon src="icon-40.png" gap:platform="ios" width="40" height="40" />
-    <icon src="icon-80.png" gap:platform="ios" width="80" height="80" />
+    <icon src="pgbomit/icon-40.png" gap:platform="ios" width="40" height="40" />
+    <icon src="pgbomit/icon-80.png" gap:platform="ios" width="80" height="80" />
 
     <!-- see: https://www.npmjs.com/package/phonegap-plugin-push -->
     <gap:plugin name="phonegap-plugin-push" source="npm" version="1.2.3" />
@@ -93,7 +102,7 @@
     <!-- see: https://build.phonegap.com/plugins/1246 -->
     <gap:plugin name="com.phonegap.plugins.facebookconnect" source="pgb" version="0.9.0">
         <param name="APP_ID" value="1522728211376159" />
-        <param name="APP_NAME" value="BanQi" />
+        <param name="APP_NAME" value="Banqi" />
     </gap:plugin>
 
     <!--
@@ -122,14 +131,17 @@
     </platform>
 
     <!-- To take printscreen for sharing/feedback. Requires WRITE_EXTERNAL_STORAGE permission.
+      https://github.com/gitawego/cordova-screenshot.git
+      https://www.npmjs.com/package/com.darktalker.cordova.screenshot
       https://build.phonegap.com/plugins/2828 -->
-    <gap:plugin name="it.zerob.cordova.screenshot" source="pgb" version="0.1.3" />
+    <gap:plugin name="com.darktalker.cordova.screenshot" source="npm" />
+
     <!-- To allow easy social sharing using native intents. Requires WRITE_EXTERNAL_STORAGE permission.
       https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin -->
     <gap:plugin name="nl.x-services.plugins.socialsharing" source="pgb" version="4.3.0" />
 
     <!-- To launch the app by a link like this (you can't type it in directly in the browser! it has to be a link on a webpage):
-        tictactoe://
+        banqi://
         For iOS, see
           http://docs.build.phonegap.com/en_US/configuring_custom_urls.md.html
         For android, see
@@ -141,7 +153,10 @@
     <gap:config-file platform="android" parent="/manifest/application" mode="add" >
       <activity
           android:configChanges="locale|keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-          android:name=".BanQi" android:label="@string/app_name" android:screenOrientation="unspecified" android:windowSoftInputMode="adjustUnspecified|stateUnspecified">
+          android:name=".Banqi" android:label="@string/app_name"
+          android:screenOrientation="unspecified"
+          android:launchMode="singleTask"
+          android:windowSoftInputMode="adjustUnspecified|stateUnspecified">
         <intent-filter>
           <action android:name="android.intent.action.MAIN"/>
           <category android:name="android.intent.category.LAUNCHER"/>
